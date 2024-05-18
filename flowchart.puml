@@ -1,0 +1,23 @@
+@startuml 
+title Gas Turbine Condition Monitoring Based on KPCA and Analysis of Statistics T2 and SPE
+
+start
+:read aerodynamic params;
+:process by KPCA;
+fork
+  :build T2 stats and threshold;
+  if (T2 > threshold) then (yes)
+    
+  endif
+fork again
+  :build SPE stats and threshold;
+  :apply noice detection;
+end fork
+:calculate sensitivity of aerodynamic params to T2 and SPE;
+:locate fault accorind to sensitivity;
+
+while(faults available)
+  :notify client;
+endwhile
+stop
+@enduml
